@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
+	<title>LogIn</title>
+    <link rel='stylesheet' type='text/css' href='stylesPWS/style.css' />
+	<link rel='stylesheet' 
+		   type='text/css' 
+		   media='only screen and (min-width: 530px) and (min-device-width: 481px)'
+		   href='stylesPWS/wide.css' />
+	<link rel='stylesheet' 
+		   type='text/css' 
+		   media='only screen and (max-width: 480px)'
+		   href='stylesPWS/smartphone.css' />
+		   
+	<script type="text/javascript">
+		function ikusBalioak(){
+			var sAux="";
+			var frm=document.getElementById("erregistro");
+			for(i=1;i<frm.elements.length;i++){
+				sAux +="IZENA: " + frm.elements[i].name+"";
+				sAux +="BALIOA: " + frm.elements[i].value+"\n";
+			}
+			alert(sAux);
+		}
+	</script>
+  </head>
+  <body>
+  	<header class='main' id='h1'>
+      <span class="right"><a href='layout.html'>Atzera</a> </span>
+	<h2>Erregistratu</h2>
+    </header>
+	<br>
+	<div style="text-align:center;">	
+		<form id="erregistro" name="erregistro" onSubmit="ikusBalioak()" >
+			Izen-abizenak (*) <input type="text" name="Izen-abizenak" title="Izen-abizenak"><br>		
+			Eposta elektronikoa (*) <input type="text" name="Eposta" title="Eposta"><br>
+			Pasahitza (*)<input type="password" name="Pasahitza" title="Pasahitza"><br>
+			Telefono zenbakia (*) <input type="text" name="Telefonoa" title="Telefonoa"><br>
+			Espezialitatea (*)
+			<select>
+				<option value="Aukeratu espezialitatea"> ------------------------------------------------- </option>
+				<option value="Konputagailuen ingeniaritza">Konputagailuen ingeniaritza</option>
+				<option value="Konputazioa">Konputazioa</option>
+				<option value="Software ingeniaritza">Software ingeniaritza</option>
+			</select><br><br>
+			Interesa duzun teknologiak eta erremintak: <br>
+			<textarea rows="3" cols="40"></textarea>
+			<br>
+			Argazkia igo
+				<input type="file" name="pic" accept="image/*">
+				
+			<br><br>
+			<input type="submit" value="Bidali">
+		</form>
+	</div>
+
+</body>
+</html>

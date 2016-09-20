@@ -1,0 +1,28 @@
+@charset "utf-8";
+* 						{margin: 0; padding: 0;}
+body					{font: 16px Georgia, serif;
+						 background-color: #000000;}
+
+h4						{text-align: center; color: #FFF}
+
+h3						{text-align: center; color: #FFF}
+
+img						{height: 250px;
+						 width: 250px;
+						 -webkit-transition: all 1s ease;
+						 -moz-transition: all 1s ease;
+						 -o-transition: all 1s ease;
+						 -ms-transition: all 1s ease;
+						 transition: all 1s ease;
+						 }
+						 
+img:hover 				{
+						 width: 350px;
+						 height: 350px;
+						} 
+						
+header					{background: #4eb2a8;
+						 text-align: center;}
+
+
+
