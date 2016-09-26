@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
-	<title>LogIn</title>
+	<title>SignUp</title>
     <link rel='stylesheet' type='text/css' href='stylesPWS/style.css' />
 	<link rel='stylesheet' 
 		   type='text/css' 
@@ -17,12 +17,88 @@
 		function ikusBalioak(){
 			var sAux="";
 			var frm=document.getElementById("erregistro");
-			for(i=1;i<frm.elements.length;i++){
+			for(i=0;i<frm.elements.length;i++){
 				sAux +="IZENA: " + frm.elements[i].name+"";
 				sAux +="BALIOA: " + frm.elements[i].value+"\n";
 			}
 			alert(sAux);
 		}
+		function hutsaEz() {
+			var name=document.getElementById("Izen-abizenak").value;
+			var email=document.getElementById("Eposta").value;
+			var pass=document.getElementById("Pasahitza").value;
+			var telefonoa=document.getElementById("Telefonoa").value;
+			if(name==''){
+				alert('Izen-abizenak eremua ezin da hutsik utzi.');
+				return false;
+			}
+			if(email==''){
+				alert('Eposta ezin da hutsik utzi.');
+				return false;
+			}
+			if(pass==''){
+				alert('Pasahitza ezin da hutsik utzi.');
+				return false;
+			}
+			if(telefonoa==''){
+				alert('Telefonoa ezin da hutsik utzi.');
+				return false;
+			}
+			return true;
+		}
+		
+		function passLuzera(){
+			var pass=document.getElementById("Pasahitza").value;
+			if(pass.length < 6){
+				alert('Pasahitzak gutxienez 6ko luzera izan behar du');
+				return false;
+			}
+			return true;
+		}
+
+		function helbideFormatua(){
+			var email=document.getElementById("Eposta").value;
+			var posta = new RegExp("[a-z]+[0-9]{3}@ikasle\.ehu\.e(us|s)") ;
+			if (posta.test(email)){
+				return true;
+			}else{
+				alert('Posta elektronikoak EHUko ikasleen txantiloira doitu behar du; hots Hizkiak+3 digitu+ “@ikasle.ehu.” + “eus”/“es”');
+				return false;
+			}	
+		}
+		
+		function telefonoLuzera(){
+			var telefonoa=document.getElementById("Telefonoa").value;
+			var tel = new RegExp(/^[0-9]{9}$/) ;
+			if (tel.test(telefonoa)){
+				return true;
+			}else{
+				alert('Telefonoak 9 digitu izan behar ditu.'); 
+				return false;
+			}	
+		}
+		
+		function izenAbizenak(){
+			var izenabizenak=document.getElementById("Izen-abizenak").value;
+			var izen = new RegExp(/^([A-ZÑÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*){3,}$/);
+			if (izen.test(izenabizenak)){
+				return true;
+			}else{
+				alert('Izen bat eta bi abizen sartu. Lehenengo hizkiak letra larria izan behar du.'); 
+				return false;
+			}	
+		}
+		
+		function balidatu(){
+			if( hutsaEz() && passLuzera() && telefonoLuzera() && helbideFormatua() &&izenAbizenak()){	
+				ikusBalioak();
+				return true;		
+			}else{
+				return false;
+			}
+		}
+	
+		
 	</script>
   </head>
   <body>
@@ -32,14 +108,14 @@
     </header>
 	<br>
 	<div style="text-align:center;">	
-		<form id="erregistro" name="erregistro" onSubmit="ikusBalioak()" >
-			Izen-abizenak (*) <input type="text" name="Izen-abizenak" title="Izen-abizenak"><br>		
-			Eposta elektronikoa (*) <input type="text" name="Eposta" title="Eposta"><br>
-			Pasahitza (*)<input type="password" name="Pasahitza" title="Pasahitza"><br>
-			Telefono zenbakia (*) <input type="text" name="Telefonoa" title="Telefonoa"><br>
+		<form id="erregistro" name="erregistro" onSubmit="balidatu()" >
+			Izen-abizenak (*) <input type="text" id="Izen-abizenak" name="Izen-abizenak" title="Izen-abizenak"><br>		
+			Eposta elektronikoa (*) <input type="text" id="Eposta"name="Eposta" title="Eposta"><br>
+			Pasahitza (*)<input type="password" id="Pasahitza" name="Pasahitza" title="Pasahitza"><br>
+			Telefono zenbakia (*) <input type="text" id="Telefonoa" name="Telefonoa" title="Telefonoa"><br>
 			Espezialitatea (*)
 			<select>
-				<option value="Aukeratu espezialitatea"> ------------------------------------------------- </option>
+				<option value="Aukeratu espezialitatea"> Besterik </option>
 				<option value="Konputagailuen ingeniaritza">Konputagailuen ingeniaritza</option>
 				<option value="Konputazioa">Konputazioa</option>
 				<option value="Software ingeniaritza">Software ingeniaritza</option>
