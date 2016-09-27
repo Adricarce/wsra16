@@ -23,82 +23,7 @@
 			}
 			alert(sAux);
 		}
-		
-		function hutsaEz() {
-			var name=document.getElementById("Izen-abizenak").value;
-			var email=document.getElementById("Eposta").value;
-			var pass=document.getElementById("Pasahitza").value;
-			var telefonoa=document.getElementById("Telefonoa").value;
-			if(name==''){
-				alert('Izen-abizenak eremua ezin da hutsik utzi.');
-				return false;
-			}
-			if(email==''){
-				alert('Eposta ezin da hutsik utzi.');
-				return false;
-			}
-			if(pass==''){
-				alert('Pasahitza ezin da hutsik utzi.');
-				return false;
-			}
-			if(telefonoa==''){
-				alert('Telefonoa ezin da hutsik utzi.');
-				return false;
-			}
-			return true;
-		}
-		
-		function passLuzera(){
-			var pass=document.getElementById("Pasahitza").value;
-			if(pass.length < 6){
-				alert('Pasahitzak gutxienez 6ko luzera izan behar du.');
-				return false;
-			}
-			return true;
-		}
 
-		function helbideFormatua(){
-			var email=document.getElementById("Eposta").value;
-			var posta = new RegExp("[a-z]+[0-9]{3}@ikasle\.ehu\.e(us|s)") ;
-			if (posta.test(email)){
-				return true;
-			}else{
-				alert('Posta elektronikoak EHUko ikasleen txantiloira doitu behar du; hots Hizkiak+3 digitu+ “@ikasle.ehu.” + “eus”/“es”');
-				return false;
-			}	
-		}
-		
-		function telefonoLuzera(){
-			var telefonoa=document.getElementById("Telefonoa").value;
-			var tel = new RegExp(/^[0-9]{9}$/) ;
-			if (tel.test(telefonoa)){
-				return true;
-			}else{
-				alert('Telefonoak 9 digitu izan behar ditu.'); 
-				return false;
-			}	
-		}
-		
-		function izenAbizenak(){
-			var izenabizenak=document.getElementById("Izen-abizenak").value;
-			var izen = new RegExp(/^([A-ZÑÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*){3,}$/);
-			if (izen.test(izenabizenak)){
-				return true;
-			}else{
-				alert('Izen bat eta bi abizen sartu. Lehenengo hizkiak letra larria izan behar du.'); 
-				return false;
-			}	
-		}
-		
-		function balidatu(){
-			if( hutsaEz() && passLuzera() && telefonoLuzera() && helbideFormatua() &&izenAbizenak()){	
-				ikusBalioak();
-				return true;		
-			}else{
-				return false;
-			}
-		}
-		
 		function besteEsp(){
 			var espezialitatea=document.getElementById("Espezialitatea").value;
 			if (espezialitatea=="Besterik"){
@@ -136,13 +61,13 @@
     </header>
 	<br>
 	<div style="text-align:center;">	
-		<form id="erregistro" name="erregistro" onSubmit="balidatu()" >
-			Izen-abizenak (*) <input type="text" id="Izen-abizenak" name="Izen-abizenak" title="Izen-abizenak"><br>		
-			Eposta elektronikoa (*) <input type="text" id="Eposta"name="Eposta" title="Eposta"><br>
-			Pasahitza (*)<input type="password" id="Pasahitza" name="Pasahitza" title="Pasahitza"><br>
-			Telefono zenbakia (*) <input type="text" id="Telefonoa" name="Telefonoa" title="Telefonoa"><br>
+		<form id="erregistro" name="erregistro" onSubmit="ikusBalioak()" >
+			Izen-abizenak (*) <input type="text" id="Izen-abizenak" name="Izen-abizenak" title="Izen bat eta bi abizen sartu. Lehenengo hizkiak letra larria izan behar du." pattern="([A-ZÑÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*){3,}" required><br>		
+			Eposta elektronikoa (*) <input type="text" id="Eposta"name="Eposta" title="Posta elektronikoak EHUko ikasleen txantiloira doitu behar du; hots Hizkiak+3 digitu+ “@ikasle.ehu.” + “eus”/“es”" pattern="[a-z]+[0-9]{3}@ikasle\.ehu\.e(us|s)" required><br>
+			Pasahitza (*)<input type="password" id="Pasahitza" name="Pasahitza" title="Pasahitzak gutxienez 6ko luzera izan behar du." pattern="[A-Za-z]{6,}"required><br>
+			Telefono zenbakia (*) <input type="text" id="Telefonoa" name="Telefonoa" title="Telefonoak 9 digitu izan behar ditu." pattern="[0-9]{9}" required><br>
 			Espezialitatea (*)
-			<select id="Espezialitatea" onchange="besteEsp()">
+			<select id="Espezialitatea" onchange="besteEsp()" required>
 				<option value="Konputagailuen ingeniaritza">Konputagailuen ingeniaritza</option>
 				<option value="Konputazioa">Konputazioa</option>
 				<option value="Software ingeniaritza">Software ingeniaritza</option>
