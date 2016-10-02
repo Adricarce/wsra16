@@ -25,12 +25,22 @@
 		}
 		
 		function hutsaEz() {
-			var name=document.getElementById("Izen-abizenak").value;
+			var name=document.getElementById("Izena").value;
+			var sur1=document.getElementById("Abizena1").value;
+			var sur2=document.getElementById("Abizena2").value;
 			var email=document.getElementById("Eposta").value;
 			var pass=document.getElementById("Pasahitza").value;
 			var telefonoa=document.getElementById("Telefonoa").value;
 			if(name==''){
-				alert('Izen-abizenak eremua ezin da hutsik utzi.');
+				alert('Izena eremua ezin da hutsik utzi.');
+				return false;
+			}
+			if(sur1==''){
+				alert('1. abizena eremua ezin da hutsik utzi.');
+				return false;
+			}
+			if(sur2==''){
+				alert('2. abizena eremua ezin da hutsik utzi.');
 				return false;
 			}
 			if(email==''){
@@ -79,20 +89,43 @@
 			}	
 		}
 		
-		function izenAbizenak(){
-			var izenabizenak=document.getElementById("Izen-abizenak").value;
-			var izen = new RegExp(/^([A-ZÑÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*){3,}$/);
-			if (izen.test(izenabizenak)){
+		function izena(){
+			var izena=document.getElementById("Izena").value;
+			var izen = new RegExp(/^([A-ZÑÁÉÍÓÚ]{1}[a-zñáéíóú]+(\s){0,1})+$/);
+
+			if (izen.test(izena)){
 				return true;
 			}else{
-				alert('Izen bat eta bi abizen sartu. Lehenengo hizkiak letra larria izan behar du.'); 
+				alert('Izena: Lehenengo hizkiak letra larria izan behar du.'); 
+				return false;
+			}	
+		}
+		
+		function abizena1(){
+			var abizena1=document.getElementById("Abizena1").value;
+			var izen = new RegExp(/^([A-ZÑÁÉÍÓÚ]{1}[a-zñáéíóú]+(\s){0,1})+$/);
+			if (izen.test(abizena1)){
+				return true;
+			}else{
+				alert('1. abizena: Lehenengo hizkiak letra larria izan behar du.'); 
+				return false;
+			}	
+		}
+		
+		function abizena2(){
+			var abizena2=document.getElementById("Abizena2").value;
+			var izen = new RegExp(/^([A-ZÑÁÉÍÓÚ]{1}[a-zñáéíóú]+(\s){0,1})+$/);
+			if (izen.test(abizena2)){
+				return true;
+			}else{
+				alert('2. abizena: Lehenengo hizkiak letra larria izan behar du.'); 
 				return false;
 			}	
 		}
 		
 		function balidatu(){
-			if( hutsaEz() && passLuzera() && telefonoLuzera() && helbideFormatua() &&izenAbizenak()){	
-				ikusBalioak();
+			if( hutsaEz() && passLuzera() && telefonoLuzera() && helbideFormatua() && izena() && abizena1() && abizena2()){	
+				//ikusBalioak();
 				return true;		
 			}else{
 				return false;
@@ -103,6 +136,9 @@
 			var espezialitatea=document.getElementById("Espezialitatea").value;
 			if (espezialitatea=="Besterik"){
 				document.getElementById("BesteEspezialitatea").style.display="initial";
+			}
+			else{
+				document.getElementById("BesteEspezialitatea").style.display="none";
 			}
 		}
 		
@@ -135,14 +171,16 @@
 	<h2>Erregistratu</h2>
     </header>
 	<br>
-	<div style="text-align:center;">	
-		<form id="erregistro" name="erregistro" onSubmit="balidatu()" >
-			Izen-abizenak (*) <input type="text" id="Izen-abizenak" name="Izen-abizenak" title="Izen-abizenak"><br>		
+	<div style="text-align:center;">
+		<form id="erregistro" name="erregistro" method="post" action="Enroll.php" onSubmit=" return balidatu()">
+			Izena (*) <input type="text" id="Izena" name="Izena" title="Izena"><br>	
+			1. abizena (*) <input type="text" id="Abizena1" name="Abizena1" title="Abizena1"><br>	
+			2. abizena (*) <input type="text" id="Abizena2" name="Abizena2" title="Abizena2"><br>				
 			Eposta elektronikoa (*) <input type="text" id="Eposta"name="Eposta" title="Eposta"><br>
 			Pasahitza (*)<input type="password" id="Pasahitza" name="Pasahitza" title="Pasahitza"><br>
 			Telefono zenbakia (*) <input type="text" id="Telefonoa" name="Telefonoa" title="Telefonoa"><br>
 			Espezialitatea (*)
-			<select id="Espezialitatea" onchange="besteEsp()">
+			<select id="Espezialitatea" name="Espezialitatea" onchange="besteEsp()">
 				<option value="Konputagailuen ingeniaritza">Konputagailuen ingeniaritza</option>
 				<option value="Konputazioa">Konputazioa</option>
 				<option value="Software ingeniaritza">Software ingeniaritza</option>
@@ -151,7 +189,7 @@
 			<textarea rows="1" cols="40" id="BesteEspezialitatea" placeholder="Idatzi zure espezialitatea" style="display: none;" ></textarea>			
 			<br>
 			Interesa duzun teknologiak eta erremintak: <br>
-			<textarea rows="3" cols="40"></textarea>
+			<textarea rows="3" cols="40" name="Interesa"></textarea>
 			<br>
 			Argazkia igo
 				<input type="file" name="pic" accept="image/*" onchange="irudiaErakutsi(this)">
