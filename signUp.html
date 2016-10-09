@@ -135,7 +135,7 @@
 		function besteEsp(){
 			var espezialitatea=document.getElementById("Espezialitatea").value;
 			if (espezialitatea=="Besterik"){
-				document.getElementById("BesteEspezialitatea").style.display="initial";
+				document.getElementById("BesteEspezialitatea").style.display="inline";
 			}
 			else{
 				document.getElementById("BesteEspezialitatea").style.display="none";
@@ -159,7 +159,7 @@
 					}; 
 				})(img);
 				reader.readAsDataURL(file);
-				document.getElementById("img").style.display="initial";
+				document.getElementById("img").style.display="inline";
 			}    
 		}
 			
@@ -186,13 +186,13 @@
 				<option value="Software ingeniaritza">Software ingeniaritza</option>
 				<option value="Besterik"> Besterik </option>
 			</select><br><br>
-			<textarea rows="1" cols="40" id="BesteEspezialitatea" placeholder="Idatzi zure espezialitatea" style="display: none;" ></textarea>			
+			<textarea rows="1" cols="40" id="BesteEspezialitatea" name="BesteEspezialitatea" placeholder="Idatzi zure espezialitatea" style="display: none;" ></textarea>			
 			<br>
 			Interesa duzun teknologiak eta erremintak: <br>
 			<textarea rows="3" cols="40" name="Interesa"></textarea>
 			<br>
 			Argazkia igo
-				<input type="file" name="pic" accept="image/*" onchange="irudiaErakutsi(this)">
+				<input type="file" id="image" name="image" accept="image/*" onchange="irudiaErakutsi(this)">
 				<br>
 				<img id="img" src="" alt="image" style="width:25%; margin-top:10px; display:none;"/>  				
 			<br><br>
