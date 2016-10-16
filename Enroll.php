@@ -17,42 +17,46 @@ if (filter_var($_POST['Izena'],FILTER_VALIDATE_REGEXP,array("options"=>array("re
 							$sql="INSERT INTO erabiltzaile (Izena, Abizena1, Abizena2, Eposta, Pasahitza, Telefonoa, Espezialitatea, Interesa) VALUES ('$_POST[Izena]' , '$_POST[Abizena1]' , '$_POST[Abizena2]' , '$_POST[Eposta]' , '$_POST[Pasahitza]' , '$_POST[Telefonoa]' , '$_POST[Espezialitatea]' , '$_POST[Interesa]')";
 						}
 						else{
-							$sql="INSERT INTO erabiltzaile (Izena, Abizena1, Abizena2, Eposta, Pasahitza, Telefonoa, Espezialitatea, Interesa) VALUES ('$_POST[Izena]' , '$_POST[Abizena1]' , '$_POST[Abizena2]' , '$_POST[Eposta]' , '$_POST[Pasahitza]' , '$_POST[Telefonoa]' , '$_POST[BesteEspezialitatea]' , '$_POST[Interesa]')";
+							$sql="INSERT INTO erabiltzaile (Izena, Abizena1, Abizena2, Eposta, Pasahitza, Telefonoa, Espezialitatea, Interesa) VALUES ('$_POST[Izena]' , '$_POST[Abizena1]' , '$_POST[Abizena2]' , '$_POST[Eposta]' , '$_POST[Pasahitza]' , '$_POST[Telefonoa]' , '$_POST[BesteEspezialitatea]' , '$_POST[Interesa]')";	
 						}
-					}else{
+						if (!$link -> query($sql)){
+								echo "<p><a href = 'signUp.html'>Zuzendu datuak</a></p>";
+								die("<p>Errorea gertatu da: ".$link -> error ."</p>");
+						}
+						else{
+							echo '<div align="center">Erregistro bat gorde  da!
+							<p><a href = "ShowUsers.php">Erabiltzaile guztiak ikusi</a></p>
+							<p><a href = "layout.html">Hasiera orria</a></p></div>';
+						}
+					}
+					else{
+						echo '<p align="center"><a href = "signUp.html">Zuzendu datuak</a></p>';
 						echo 'Telefonoak 9 digitu izan behar ditu.';
 					}
 				}
 				else{
+					echo '<p align="center"><a href = "signUp.html">Zuzendu datuak</a></p>';
 					echo'Pasahitzak gutxienez 6ko luzera izan behar du.';
 				}
 			}
 			else{
-				echo'Posta elektronikoak EHUko ikasleen txantiloira doitu behar du; hots Hizkiak+3 digitu+ “@ikasle.ehu.” + “eus”/“es”';
+				echo '<p align="center"><a href = "signUp.html">Zuzendu datuak</a></p>';
+				echo'Posta elektronikoak EHUko ikasleen txantiloira doitu behar du; hots Hizkiak+3 digitu+ @ikasle.ehu. + eus/es';
 			}
 		}
 		else{
+			echo '<p align="center"><a href = "signUp.html">Zuzendu datuak</a></p>';
 			echo'2. abizena: Lehenengo hizkiak letra larria izan behar du.';
 		}
 	}
 	else{
+		echo '<p align="center"><a href = "signUp.html">Zuzendu datuak</a></p>';
 		echo'1. abizena: Lehenengo hizkiak letra larria izan behar du.';
 	}
 }	
 else{
+	echo '<p align="center"><a href = "signUp.html">Zuzendu datuak</a></p>';
 	echo'Izena: Lehenengo hizkiak letra larria izan behar du.';
-}
-
-$ema=mysqli_query($link,$sql);
-
-if (!$ema){
-	echo "<p><a href = 'signUp.html'>Zuzendu datuak</a></p>";
-	die("<p>Errorea gertatu da: ".$link-> error ."</p>");
-}
-else{
-	echo '<div align="center">Erregistro bat gorde  da!
-	<p><a href = "ShowUsers.php">Erabiltzaile guztiak ikusi</a></p>
-	<p><a href = "layout.html">Hasiera orria</a></p></div>';
 }
 mysqli_close($link);
 ?>

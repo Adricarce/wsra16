@@ -29,5 +29,5 @@ while( $row = mysqli_fetch_array($erabiltzaileak)) {
 }
 echo '</table>';
 echo '<p align="center"><a href = "layout.html">Hasiera orria</a></p></div>';
-$link->close();
+mysqli_close($link);
 ?>

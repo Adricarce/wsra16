@@ -59,17 +59,19 @@
 		}
 		
 		function passLuzera(){
-			var pass=document.getElementById("Pasahitza").value;
-			if(pass.length < 6){
+				var pass=document.getElementById("Pasahitza").value;
+				var pasahitza = new RegExp(/^[a-zA-Z,0-9]{6,}$/);
+			if (pasahitza.test(pass)){
+				return true;
+			}else{
 				alert('Pasahitzak gutxienez 6ko luzera izan behar du.');
 				return false;
-			}
-			return true;
+			}	
 		}
 
 		function helbideFormatua(){
 			var email=document.getElementById("Eposta").value;
-			var posta = new RegExp("[a-z]+[0-9]{3}@ikasle\.ehu\.e(us|s)") ;
+			var posta = new RegExp(/^[a-z]+[0-9]{3}@ikasle(\.)ehu(\.)e(us|s)$/) ;
 			if (posta.test(email)){
 				return true;
 			}else{

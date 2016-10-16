@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
+	<title>LogIn</title>
+    <link rel='stylesheet' type='text/css' href='stylesPWS/style.css' />
+	<link rel='stylesheet' 
+		   type='text/css' 
+		   media='only screen and (min-width: 530px) and (min-device-width: 481px)'
+		   href='stylesPWS/wide.css' />
+	<link rel='stylesheet' 
+		   type='text/css' 
+		   media='only screen and (max-width: 480px)'
+		   href='stylesPWS/smartphone.css' />
+	<script type="text/javascript">
+	
+		function hutsaEz() {
+				var email=document.getElementById("Eposta").value;
+				var pass=document.getElementById("Pasahitza").value;
+				if(email==''){
+					alert('Eposta ezin da hutsik utzi.');
+					return false;
+				}
+				if(pass==''){
+					alert('Pasahitza ezin da hutsik utzi.');
+					return false;
+				}
+				return true;
+			}
+		function passLuzera(){
+				var pass=document.getElementById("Pasahitza").value;
+				var pasahitza = new RegExp(/^[a-zA-Z,0-9]{6,}$/);
+			if (pasahitza.test(pass)){
+				return true;
+			}else{
+				alert('Pasahitzak gutxienez 6ko luzera izan behar du.');
+				return false;
+			}	
+		}
+
+		function helbideFormatua(){
+			var email=document.getElementById("Eposta").value;
+			var posta = new RegExp(/^[a-z]+[0-9]{3}@ikasle(\.)ehu(\.)e(us|s)$/);
+			if (posta.test(email)){
+				return true;
+			}else{
+				alert('Posta elektronikoak EHUko ikasleen txantiloira doitu behar du; hots Hizkiak+3 digitu+ “@ikasle.ehu.” + “eus”/“es”');
+				return false;
+			}	
+		}
+		function balidatu(){
+			if( hutsaEz() && helbideFormatua() && passLuzera()){	
+				//ikusBalioak();
+				return true;		
+			}else{
+				return false;
+			}
+		}
+	</script>
+  </head>
+  <body>
+  <header class='main' id='h1'>
+      <span class="right"><a href='layout.html'>Atzera</a> </span>
+	<h2>Logeatu</h2>
+    </header>
+	<br>
+	<form id="log" name="log" method="post" action="SignIn.php" onSubmit="return balidatu()">
+		<div style="text-align:center;">
+			Eposta elektronikoa (*) <input type="text" id="Eposta" name="Eposta" title="Eposta"><br>
+			Pasahitza (*)<input type="password" id="Pasahitza" name="Pasahitza" title="Pasahitza"><br>
+			<input name="submit" type="submit" value="Bidali">
+		</div>
+	</form>
+</body>
+</html>
