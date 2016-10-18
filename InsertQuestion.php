@@ -38,6 +38,7 @@
 			Galdera (*)<br><textarea rows="3" cols="40" name="Galdera" id="Galdera"></textarea><br><br><br>
 			Erantzuna (*)<br> <textarea rows="2" cols="40" name="Erantzuna" id="Erantzuna"></textarea><br><br><br>
 			Zailtasuna <select id="Zailtasuna" name="Zailtasuna" onchange="besteEsp()">
+				<option value=""></option>
 				<option value="1">1</option>
 				<option value="2">2</option>
 				<option value="3">3</option>
@@ -51,13 +52,29 @@
 				if ($link->connect_error) {
 					printf("Connection failed: " . $link->connect_error);
 				} 
-				if (isset($_POST['submit'])) { 
-					$sql="INSERT INTO galdera (Eposta, Galdera, Erantzuna, Zailtasuna) VALUES ('$_COOKIE[Erabiltzaile]' , '$_POST[Galdera]' , '$_POST[Erantzuna]' , '$_POST[Zailtasuna]')";
-				
-					if (!$link -> query($sql)){
-						die("<p>Errorea gertatu da: ".$link-> error ."</p>");
-					}else{
-						echo nl2br("Galdera zuzen sartu da, beste bat sartzeko aukera daukazu.\r\nBestela, Atzera sakatu eta hasierako orrira bueltatuko zara.", false);
+				else{
+					session_start();
+					if (isset($_POST['submit'])) { 
+						$sql="INSERT INTO galdera (Eposta, Galdera, Erantzuna, Zailtasuna) VALUES ('$_COOKIE[Erabiltzaile]' , '$_POST[Galdera]' , '$_POST[Erantzuna]' , '$_POST[Zailtasuna]')";
+						if (!$link -> query($sql)){
+							die("<p>Errorea gertatu da: ".$link-> error ."</p>");
+						}else{
+							/*$Ekintza='GalderaTxertatu';
+							$Identifikazioa=$_SESSION['Identifikazioa'];
+							$ordua=date('H:i:s');
+							if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+								$ip = $_SERVER['HTTP_CLIENT_IP'];
+							} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+								$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+							} else {
+								$ip = $_SERVER['REMOTE_ADDR'];
+							}
+							$txertatu="INSERT INTO ekintza (KonexioId, Eposta, EkintzaMota, EkintzaOrdua, IP) VALUES ('$Identifikazioa','$_COOKIE[Erabiltzaile]','$Ekintza','$ordua', '$ip')"; 
+							if (!$link -> query($txertatu)){
+								die("<p>Errorea gertatu da: ".$link -> error ."</p>");
+							}*/
+							echo nl2br("Galdera zuzen sartu da, beste bat sartzeko aukera daukazu.\r\nBestela, Atzera sakatu eta hasierako orrira bueltatuko zara.", false);
+						}
 					}
 				}
 				mysqli_close($link);
