@@ -16,6 +16,7 @@
 	function hutsaEz() {
 			var gald=document.getElementById("Galdera").value;
 			var eran=document.getElementById("Erantzuna").value;
+			var gaia=document.getElementById("Gaia").value;
 			if(gald==''){
 				alert('Galdera eremua ezin da hutsik utzi.');
 				return false;
@@ -24,19 +25,24 @@
 				alert('Erantzuna eremua ezin da hutsik utzi.');
 				return false;
 			}
+			if(gaia==''){
+				alert('Gaia eremua ezin da hutsik utzi.');
+				return false;
+			}
 			return true;
 		}
 	</script>
   </head>
   <body>
 	<header class='main' id='h1'>
-		<span class="right"><a href='layout.html'>Atzera</a> </span>
+		<span class="right"><a href='layout.html'>Hasiera orria</a> </span>
 		<h2>Galderak gehitu</h2>
     </header><br>
 	<div style="text-align:center;">
 		<form id="galdera" name="galdera" method="post" onSubmit=" return hutsaEz()" action="InsertQuestion.php">
 			Galdera (*)<br><textarea rows="3" cols="40" name="Galdera" id="Galdera"></textarea><br><br><br>
 			Erantzuna (*)<br> <textarea rows="2" cols="40" name="Erantzuna" id="Erantzuna"></textarea><br><br><br>
+			Gaia (*)<br> <textarea rows="2" cols="40" name="Gaia" id="Gaia"></textarea><br><br><br>
 			Zailtasuna <select id="Zailtasuna" name="Zailtasuna" onchange="besteEsp()">
 				<option value=""></option>
 				<option value="1">1</option>
@@ -55,7 +61,7 @@
 				else{
 					session_start();
 					if (isset($_POST['submit'])) { 
-						$sql="INSERT INTO galdera (Eposta, Galdera, Erantzuna, Zailtasuna) VALUES ('$_COOKIE[Erabiltzaile]' , '$_POST[Galdera]' , '$_POST[Erantzuna]' , '$_POST[Zailtasuna]')";
+						$sql="INSERT INTO galdera (Eposta, Galdera, Erantzuna, Zailtasuna, Gaia) VALUES ('$_COOKIE[Erabiltzaile]' , '$_POST[Galdera]' , '$_POST[Erantzuna]' , '$_POST[Zailtasuna]', '$_POST[Gaia]')";
 						if (!$link -> query($sql)){
 							die("<p>Errorea gertatu da: ".$link-> error ."</p>");
 						}else{
@@ -73,8 +79,19 @@
 							if (!$link -> query($txertatu)){
 								die("<p>Errorea gertatu da: ".$link -> error ."</p>");
 							}*/
-							echo nl2br("Galdera zuzen sartu da, beste bat sartzeko aukera daukazu.\r\nBestela, Atzera sakatu eta hasierako orrira bueltatuko zara.", false);
+							echo "Galdera zuzen sartu da!";
+							echo '<br>';
 						}
+						$xml = simplexml_load_file('galderak.xml');
+						$assessmentItem = $xml->addChild('assessmentItem');
+						$assessmentItem ->addAttribute('complexity', "$_POST[Zailtasuna]");
+						$assessmentItem -> addAttribute('subject',"$_POST[Gaia]");
+						$itemBody= $assessmentItem ->addChild('itemBody');
+						$itemBody->addChild('p',"$_POST[Galdera]");
+						$correctResponse= $assessmentItem ->addChild('correctResponse');
+						$correctResponse->addChild('value',"$_POST[Erantzuna]");
+						$xml->asXML('galderak.xml');
+						echo "<a href ='seeXMLQuestions.php'>Ikusi galderak</a><br>";
 					}
 				}
 				mysqli_close($link);

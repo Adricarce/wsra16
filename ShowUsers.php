@@ -1,6 +1,11 @@
 <?php
 $link = mysqli_connect ("mysql.hostinger.es","u885903313_adri","Fwrzd7QxoO","u885903313_quizz");
 //$link = mysqli_connect ("localhost","root","","quizz");
+
+if ($link->connect_error) {
+    printf("Connection failed: " . $link->connect_error);
+} 
+
 $erabiltzaileak = $link -> query ("SELECT * FROM erabiltzaile");
 echo '<h1 align="center"> Erabiltzaile guztien zerrenda </h1>';
 echo '<table border=1 align="center">

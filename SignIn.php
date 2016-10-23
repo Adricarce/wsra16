@@ -5,6 +5,7 @@ $link = mysqli_connect ("mysql.hostinger.es","u885903313_adri","Fwrzd7QxoO","u88
 if ($link->connect_error) {
     printf("Connection failed: " . $link->connect_error);
 } 
+
 if (isset($_POST['submit'])) { 
 	if (filter_var($_POST['Eposta'],FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[a-z]+[0-9]{3}@ikasle\.ehu\.e(us|s)/")))){
 		if (filter_var($_POST['Pasahitza'],FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[a-zA-Z,0-9]{6,}/")))){
