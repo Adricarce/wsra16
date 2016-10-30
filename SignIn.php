@@ -22,7 +22,7 @@ if (isset($_POST['submit'])) {
 					if ($KonId->num_rows>0){
 						$_SESSION['Identifikazioa']=$KonId->fetch_object()->Identifikazioa;
 					}*/
-					header('Location: InsertQuestion.php');
+					header('Location: handlingQuizes.php');
 				}
 			}
 			else{
