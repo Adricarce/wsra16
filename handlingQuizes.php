@@ -20,19 +20,21 @@
 		document.getElementById("izenburua").style.display="none";
 	}
 	
-	xhttp= new XMLHttpRequest();
-	XMLHttpRequestObject2 = new XMLHttpRequest();
 	
-	xhttp.onreadystatechange= function(){
-		if ((xhttp.readyState==4)&&(xhttp.status==200)){ 	 
-			document.getElementById('txtHint').innerHTML= xhttp.responseText;
+	XMLHttpRequestObject= new XMLHttpRequest();
+	XMLHttpRequestObject2 = new XMLHttpRequest();
+	XMLHttpRequestObject3 = new XMLHttpRequest();
+	
+	XMLHttpRequestObject.onreadystatechange= function(){
+		if ((XMLHttpRequestObject.readyState==4)&&(XMLHttpRequestObject.status==200)){ 	 
+			document.getElementById('txtHint').innerHTML= XMLHttpRequestObject.responseText;
 		}
 	}
 
 	
 	function galderakBistaratu(){
-		xhttp.open("POST",'GalderakBistaratu.php', true);
-		xhttp.send(null);
+		XMLHttpRequestObject.open("POST",'GalderakBistaratu.php', true);
+		XMLHttpRequestObject.send(null);
 	}
 	
 	
@@ -68,16 +70,25 @@
 		XMLHttpRequestObject2.open("POST","GalderaBerria.php", true);
 		XMLHttpRequestObject2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		XMLHttpRequestObject2.send(param);
-
-	}
-	
-	function garbitu(){
 		document.getElementById("Galdera").value="";
 		document.getElementById("Erantzuna").value="";
 		document.getElementById("Gaia").value="";
+		document.getElementById("taula").style.display="none";
+		document.getElementById("izenburua").style.display="none";
 	}
 	
+	XMLHttpRequestObject3.onreadystatechange= function(){
+		if ((XMLHttpRequestObject3.readyState==4)&&(XMLHttpRequestObject3.status==200)){ 	 
+			document.getElementById('txtHint3').innerHTML= XMLHttpRequestObject3.responseText;
+		}
+	}
+
+	function galderaKopurua(){	
+		XMLHttpRequestObject3.open("POST",'GalderaKopurua.php', true);
+		XMLHttpRequestObject3.send(null);
+	}
 	
+	setInterval(galderaKopurua,5000);
 
 	</script> 
   </head>
@@ -99,13 +110,13 @@
 				<option value="4">4</option>
 				<option value="5">5</option>
 			</select><br><br>
-			<input type="button" name="Bidali" value="Bidali" onClick="return galderaBerria(); garbitu();"></input><br>
+			<input type="button" name="Bidali" value="Bidali" onClick="return galderaBerria()"></input><br>
 		</form>
 			<input type="button" id="txertatu" name="txertatu" value="Galdera txertatu" onClick="galderaTxertatu()"></input><br><br>
 			<input type="button" name="ikusi" value="Sortutako galderak bistaratu" onClick="galderakBistaratu()"></input><br><br>
-		
 	</div>
 	<div id="txtHint" style="text-align:center;"></div>
 	<div id="txtHint2" style="text-align:center;"></div>
+	<div id="txtHint3" style="text-align:center;"></div>
    </body>
   </html>
