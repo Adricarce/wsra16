@@ -11,7 +11,7 @@ $zuregalderak = $link -> query ("SELECT * FROM galdera WHERE Eposta='$_COOKIE[Er
 $num_rows=mysqli_num_rows($galderak);
 $num_rows2=mysqli_num_rows($zuregalderak);
 
-echo 'Nire galderak/Galderak guztira DB: '.$num_rows. '/'.$num_rows2.'.';
+echo 'Nire galderak/Galderak guztira DB: '.$num_rows2. '/'.$num_rows.'.';
 
 mysqli_close($link);
 ?>

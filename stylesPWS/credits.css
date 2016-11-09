@@ -1,11 +1,11 @@
 @charset "utf-8";
 * 						{margin: 0; padding: 0;}
 body					{font: 16px Georgia, serif;
-						 background-color: #000000;}
+						background-color: #999}
 
-h4						{text-align: center; color: #FFF}
+h4						{text-align: center; color: #000000}
 
-h3						{text-align: center; color: #FFF}
+h3						{text-align: center; color: #000000}
 
 img						{height: 250px;
 						 width: 250px;
@@ -21,8 +21,11 @@ img:hover 				{
 						 height: 350px;
 						} 
 						
-header					{background: #4eb2a8;
-						 text-align: center;}
-
+section > div				{padding: 20px;}
+header, nav, section		{background: #eee; text-align: center;}
+footer					{background: #eee; text-align: center;}
+nav span             			{ margin: 0px 10px 0px 0px;
+						width: 100%;
+						display: inline-block;}
 
 

@@ -20,7 +20,7 @@ if (filter_var($_POST['Izena'],FILTER_VALIDATE_REGEXP,array("options"=>array("re
 							$sql="INSERT INTO erabiltzaile (Izena, Abizena1, Abizena2, Eposta, Pasahitza, Telefonoa, Espezialitatea, Interesa) VALUES ('$_POST[Izena]' , '$_POST[Abizena1]' , '$_POST[Abizena2]' , '$_POST[Eposta]' , '$_POST[Pasahitza]' , '$_POST[Telefonoa]' , '$_POST[BesteEspezialitatea]' , '$_POST[Interesa]')";	
 						}
 						if (!$link -> query($sql)){
-								echo "<p><a href = 'signUp.html'>Zuzendu datuak</a></p>";
+								echo "<p><a href = 'signUpBerria.html'>Zuzendu datuak</a></p>";
 								die("<p>Errorea gertatu da: ".$link -> error ."</p>");
 						}
 						else{
@@ -30,32 +30,32 @@ if (filter_var($_POST['Izena'],FILTER_VALIDATE_REGEXP,array("options"=>array("re
 						}
 					}
 					else{
-						echo '<p align="center"><a href = "signUp.html">Zuzendu datuak</a></p>';
+						echo '<p align="center"><a href = "signUpBerria.html">Zuzendu datuak</a></p>';
 						echo 'Telefonoak 9 digitu izan behar ditu.';
 					}
 				}
 				else{
-					echo '<p align="center"><a href = "signUp.html">Zuzendu datuak</a></p>';
+					echo '<p align="center"><a href = "signUpBerria.html">Zuzendu datuak</a></p>';
 					echo'Pasahitzak gutxienez 6ko luzera izan behar du.';
 				}
 			}
 			else{
-				echo '<p align="center"><a href = "signUp.html">Zuzendu datuak</a></p>';
+				echo '<p align="center"><a href = "signUpBerria.html">Zuzendu datuak</a></p>';
 				echo'Posta elektronikoak EHUko ikasleen txantiloira doitu behar du; hots Hizkiak+3 digitu+ @ikasle.ehu. + eus/es';
 			}
 		}
 		else{
-			echo '<p align="center"><a href = "signUp.html">Zuzendu datuak</a></p>';
+			echo '<p align="center"><a href = "signUpBerria.html">Zuzendu datuak</a></p>';
 			echo'2. abizena: Lehenengo hizkiak letra larria izan behar du.';
 		}
 	}
 	else{
-		echo '<p align="center"><a href = "signUp.html">Zuzendu datuak</a></p>';
+		echo '<p align="center"><a href = "signUpBerria.html">Zuzendu datuak</a></p>';
 		echo'1. abizena: Lehenengo hizkiak letra larria izan behar du.';
 	}
 }	
 else{
-	echo '<p align="center"><a href = "signUp.html">Zuzendu datuak</a></p>';
+	echo '<p align="center"><a href = "signUpBerria.html">Zuzendu datuak</a></p>';
 	echo'Izena: Lehenengo hizkiak letra larria izan behar du.';
 }
 mysqli_close($link);

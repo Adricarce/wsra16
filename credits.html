@@ -3,7 +3,7 @@
   <head>
     <meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
 	<title>Credits</title>
-    <link rel='stylesheet' type='text/css' href='stylesPWS/credits.css' />
+    <link rel='stylesheet' type='text/css' href='stylesPWS/credits.css?v=1.2' />
   </head>
   <body>
 	<header class='main' id='h1'>
@@ -14,7 +14,76 @@
 	<h3>Adri Carcedo</h3><br>
 	<h4>Konputagailuen ingeniaritza</h4><br>
 	<div style="text-align:center;">			
-		<img src="https://s-media-cache-ak0.pinimg.com/236x/bf/f5/65/bff565208a36b49f795ca40bbe14a2aa.jpg" alt="Koala" />
+		<img src="https://s-media-cache-ak0.pinimg.com/236x/bf/f5/65/bff565208a36b49f795ca40bbe14a2aa.jpg" alt="Koala" /><br><br>
 	</div>
+	
+	<!-- Se determina y escribe la localizacion -->
+	<div id='ubicacion'></div>
+		<script type="text/javascript">
+		
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(ubikazioa);
+		} else {alert("Errorea! Nabigatzaile honek ez du geolokalizazioa baimentzen.");}
+		
+		function ubikazioa(posizioa) {
+			var latitudea = posizioa.coords.latitude;
+			var luzera = posizioa.coords.longitude;
+			var altitudea = posizioa.coords.altitude;	
+			var zehaztasuna = posizioa.coords.accuracy;	
+			var div = document.getElementById("ubicacion");
+			div.setAttribute('style','font-size: 20px; cursor: pointer; text-align:center;');
+			div.innerHTML = "Latitudea: " + latitudea + "<br>Luzera: " + luzera + "<br>Altuera (metrotan): " + altitudea + "<br>Zehaztasuna: " + zehaztasuna;}	
+		
+		function ubikazioaAktualizatu() {	
+			navigator.geolocation.watchPosition(ubikazioa);}	
+		</script>
+
+	<!-- Se escribe un mapa con la localizacion anterior-->
+	<div align="center">
+	<div id="demo"></div>
+	<div id="mapholder"></div>
+	<script src="http://maps.google.com/maps/api/js?sensor=false"></script><br>
+	<button onclick="mapa()">Mapa</button>
+	<script type="text/javascript">
+		var x=document.getElementById("demo");
+		function mapa(){
+		navigator.geolocation.getCurrentPosition(showPosition,showError);
+			function showPosition(posizioa){
+			  lat=posizioa.coords.latitude;
+			  lon=posizioa.coords.longitude;
+			  latlon=new google.maps.LatLng(lat, lon)
+			  mapholder=document.getElementById('mapholder')
+			  mapholder.style.height='250px';
+			  mapholder.style.width='500px';
+			  var myOptions={
+				  center:latlon,zoom:10,
+				  mapTypeId:google.maps.MapTypeId.ROADMAP,
+				  mapTypeControl:false,
+				  navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
+			  };
+			  var map=new google.maps.Map(document.getElementById("mapholder"),myOptions);
+			  var marker=new google.maps.Marker({posizioa:latlon,map:map,title:"Hemen zaude!"});
+			  }
+			function showError(error){
+				switch(error.code){
+					case error.PERMISSION_DENIED:
+						x.innerHTML="Nabigatzailean geolokalizazio eskaera desaktibatuta."
+						break;
+					case error.POSITION_UNAVAILABLE:
+						x.innerHTML="Lokalizazioaren informazioa ez dago eskuragarri."
+						break;
+					case error.TIMEOUT:
+						x.innerHTML="Denbora gehiegi pasa da."
+						break;
+					case error.UNKNOWN_ERROR:
+						x.innerHTML="Errore ezezagun bat gertatu da."
+						break;
+				}
+			 }
+		}
+	</script></div>
+
+	
+
 </body>
 </html>
