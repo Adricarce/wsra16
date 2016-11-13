@@ -7,6 +7,7 @@
 <body>
 	<div align="center">
 		<?php
+			session_start();
 			$link = mysqli_connect ("mysql.hostinger.es","u885903313_adri","Fwrzd7QxoO","u885903313_quizz");
 			//$link = mysqli_connect ("localhost","root","","quizz");
 			

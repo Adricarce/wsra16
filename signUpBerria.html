@@ -17,6 +17,7 @@
 			
 		XMLHttpRequestObject = new XMLHttpRequest();
 		XMLHttpRequestObject2 = new XMLHttpRequest();
+		XMLHttpRequestObject3 = new XMLHttpRequest();
 		
 		XMLHttpRequestObject.onreadystatechange = function(){
 			if ((XMLHttpRequestObject.readyState==4) && (XMLHttpRequestObject.status==200)){
@@ -46,6 +47,20 @@
 			XMLHttpRequestObject2.open("POST","pasahitza.php", true);
 			XMLHttpRequestObject2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			XMLHttpRequestObject2.send(param);
+		}
+		
+		XMLHttpRequestObject3.onreadystatechange = function(){
+			if ((XMLHttpRequestObject3.readyState==4) && (XMLHttpRequestObject3.status==200)){
+				var obj = document.getElementById('txtHint3').innerHTML = XMLHttpRequestObject3.responseText;
+			}
+		}
+		
+		function pasahitza2(){
+			var pasahitza=document.getElementById("Pasahitza2").value;
+			var param= "pasahitza="+pasahitza;
+			XMLHttpRequestObject3.open("POST","pasahitza.php", true);
+			XMLHttpRequestObject3.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			XMLHttpRequestObject3.send(param);
 		}
 	
 		function ikusBalioak(){
@@ -103,6 +118,17 @@
 			}	
 		}
 
+		function pashitzaBerdinak(){
+				var pass=document.getElementById("Pasahitza").value;
+				var pass2=document.getElementById("Pasahitza2").value;
+			if (pass==pass2){
+				return true;
+			}else{
+				alert('Pasahitzak berdinak izan behar dira.');
+				return false;
+			}	
+		}
+		
 		function helbideFormatua(){
 			var email=document.getElementById("Eposta").value;
 			var posta = new RegExp(/^[a-z]+[0-9]{3}@ikasle(\.)ehu(\.)e(us|s)$/) ;
@@ -161,7 +187,7 @@
 		
 		
 		function balidatu(){
-			if( hutsaEz() && passLuzera() && telefonoLuzera() && helbideFormatua() && izena() && abizena1() && abizena2()){
+			if( hutsaEz() && passLuzera() && telefonoLuzera() && helbideFormatua() && izena() && abizena1() && abizena2() && pashitzaBerdinak()){
 				 if(XMLHttpRequestObject.responseText=='BAI' && XMLHttpRequestObject2.responseText=='BALIOZKOA'){
 					return true;
 				 }
@@ -223,6 +249,7 @@
 			2. abizena (*) <input type="text" id="Abizena2" name="Abizena2" title="Abizena2"><br>				
 			Eposta elektronikoa (*) <input type="text" id="Eposta"name="Eposta" title="Eposta" onchange="matrikula()"><br>
 			Pasahitza (*)<input type="password" id="Pasahitza" name="Pasahitza" title="Pasahitza" onchange="pasahitza()"><br>
+			Pasahitza berridatzi (*)<input type="password" id="Pasahitza2" name="Pasahitza2" title="Pasahitza2" onchange="pasahitza2()"><br>
 			Telefono zenbakia (*) <input type="text" id="Telefonoa" name="Telefonoa" title="Telefonoa"><br>
 			Espezialitatea (*)
 			<select id="Espezialitatea" name="Espezialitatea" onchange="besteEsp()">
@@ -249,6 +276,9 @@
 	</div>
 	<div id="txtHint2"align="center">
 		<p>Pasahitza zuzena da?</p>
+	</div>
+	<div id="txtHint3"align="center">
+		<p>Bigarren pasahitza zuzena da?</p>
 	</div>
 </body>
 </html>

@@ -1,13 +1,14 @@
 <?php
+session_start();
 $link = mysqli_connect ("mysql.hostinger.es","u885903313_adri","Fwrzd7QxoO","u885903313_quizz");
 //$link = mysqli_connect ("localhost","root","","quizz");
 
 if ($link->connect_error) {
     printf("Connection failed: " . $link->connect_error);
 } 
-
+$_SESSION['Eposta'] = $_POST['Eposta'];
 if (isset($_POST['submit'])) { 
-	if (filter_var($_POST['Eposta'],FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[a-z]+[0-9]{3}@ikasle\.ehu\.e(us|s)/")))){
+	if (filter_var($_POST['Eposta'],FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[a-z]+[0-9]{3}@(ikasle\.)?ehu\.e(us|s)/")))){
 		if (filter_var($_POST['Pasahitza'],FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[a-zA-Z,0-9]{6,}/")))){
 			$erabiltzailea = $link->query( "SELECT * FROM erabiltzaile WHERE Eposta=('$_POST[Eposta]') and Pasahitza=('$_POST[Pasahitza]')" );
 			$num_rows=mysqli_num_rows($erabiltzailea);
@@ -22,7 +23,12 @@ if (isset($_POST['submit'])) {
 					if ($KonId->num_rows>0){
 						$_SESSION['Identifikazioa']=$KonId->fetch_object()->Identifikazioa;
 					}*/
-					header('Location: handlingQuizes.php');
+					if($_POST['Eposta']=='web000@ehu.es'){
+						header('Location: reviewingQuizes.php');
+					}
+					else{
+						header('Location: handlingQuizes.php');
+					}
 				}
 			}
 			else{

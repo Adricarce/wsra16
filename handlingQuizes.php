@@ -1,4 +1,13 @@
 <!DOCTYPE html>
+<?php
+session_start();
+if(!isset($_SESSION["Eposta"])){
+		header("Location: errorea.php");
+}
+if($_SESSION["Eposta"]=="web000@ehu.es"){
+	header("Location: erroreairakaslea.php");
+}
+?>
 <html>
   <head>
     <meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
@@ -94,7 +103,6 @@
   </head>
   <body>
 	<header class='main' id='h1'>
-		<span class="right"><a href='layout.html'>Hasiera orria</a> </span>
 		<h2>Galderak gehitu</h2>
     </header><br>
 	<div style="text-align:center;">
@@ -114,6 +122,7 @@
 		</form>
 			<input type="button" id="txertatu" name="txertatu" value="Galdera txertatu" onClick="galderaTxertatu()"></input><br><br>
 			<input type="button" name="ikusi" value="Sortutako galderak bistaratu" onClick="galderakBistaratu()"></input><br><br>
+			<input type="button" id="saioaitxi" name="saioaitxi" value="Saioa Itxi" onclick="location.href = 'logOut.php';"></input><br><br>
 	</div>
 	<div id="txtHint" style="text-align:center;"></div>
 	<div id="txtHint2" style="text-align:center;"></div>

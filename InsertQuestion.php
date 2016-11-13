@@ -43,7 +43,7 @@
 			Galdera (*)<br><textarea rows="3" cols="40" name="Galdera" id="Galdera"></textarea><br><br><br>
 			Erantzuna (*)<br> <textarea rows="2" cols="40" name="Erantzuna" id="Erantzuna"></textarea><br><br><br>
 			Gaia (*)<br> <textarea rows="2" cols="40" name="Gaia" id="Gaia"></textarea><br><br><br>
-			Zailtasuna <select id="Zailtasuna" name="Zailtasuna" onchange="besteEsp()">
+			Zailtasuna <select id="Zailtasuna" name="Zailtasuna">
 				<option value=""></option>
 				<option value="1">1</option>
 				<option value="2">2</option>
@@ -53,6 +53,10 @@
 			</select><br><br>
 			<input name="submit" type="submit" value="Bidali"><br><br>
 			<?php
+				session_start();
+				if(!isset($_SESSION["Eposta"])){
+						header("Location: errorea.php");
+				}
 				$link = mysqli_connect ("mysql.hostinger.es","u885903313_adri","Fwrzd7QxoO","u885903313_quizz");
 				//$link = mysqli_connect ("localhost","root","","quizz");
 				if ($link->connect_error) {

@@ -40,14 +40,15 @@
 
 		function helbideFormatua(){
 			var email=document.getElementById("Eposta").value;
-			var posta = new RegExp(/^[a-z]+[0-9]{3}@ikasle(\.)ehu(\.)e(us|s)$/);
+			var posta = new RegExp(/^[a-z]+[0-9]{3}@(ikasle(\.))?ehu(\.)e(us|s)$/);
 			if (posta.test(email)){
 				return true;
 			}else{
-				alert('Posta elektronikoak EHUko ikasleen txantiloira doitu behar du; hots Hizkiak+3 digitu+ “@ikasle.ehu.” + “eus”/“es”');
+				alert('Posta elektronikoak EHUko ikasleen txantiloira doitu behar du; hots Hizkiak+3 digitu+ “@(ikasle.)ehu.” + “eus”/“es”');
 				return false;
 			}	
 		}
+		
 		function balidatu(){
 			if( hutsaEz() && helbideFormatua() && passLuzera()){	
 				return true;		
