@@ -8,11 +8,11 @@ if(!isset($_SESSION["Eposta"])){
 	if ($link->connect_error) {
 		printf("Connection failed: " . $link->connect_error);
 	} 
-	else{
+
 		$galderak = $link -> query ("SELECT * FROM galdera WHERE GalderaZbkia='$_POST[GalderaZbkia]'");
 		$row = mysqli_fetch_array($galderak);	
-	}
-	mysqli_close($link);
+	
+	//mysqli_close($link);
 ?>
 <html>
 <head><title>Galderak editatu</title>

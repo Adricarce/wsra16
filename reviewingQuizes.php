@@ -37,13 +37,16 @@ if($_SESSION["Eposta"]!="web000@ehu.es"){
 				alert ("Galderaren zenbakia sartu behar duzu");
 				return false;
 			}
-			else{
+			
 				var param= "GalderaZbkia="+galderazbkia;
-
-				XMLHttpRequestObject.open("POST",'GalderaEditatu.php', true);
+				//alert (param);
+				XMLHttpRequestObject.open("POST","GalderaEditatu.php", true);
+				//alert("kaixo");
 				XMLHttpRequestObject.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				//alert("kaixo1");
 				XMLHttpRequestObject.send(param);
-			}
+				//alert("kaixo2");
+			
 		}
 		
 		$(document).on("click", '#gorde', function(event) { 
@@ -91,10 +94,10 @@ if($_SESSION["Eposta"]!="web000@ehu.es"){
 			echo '<tr>
 					<td>'.$row['GalderaZbkia'].'</td> 
 					<td>'.$row['Eposta'].'</td> 
-					<td><div contenteditable>'.$row['Galdera'].'</div></td>
-					<td><div contenteditable>'.$row['Erantzuna'].'</div></td>
-					<td><div contenteditable>'.$row['Zailtasuna'].'</div></td>
-					<td><div contenteditable>'.$row['Gaia'].'</div></td>
+					<td>'.$row['Galdera'].'</td>
+					<td>'.$row['Erantzuna'].'</td>
+					<td>'.$row['Zailtasuna'].'</td>
+					<td>'.$row['Gaia'].'</td>
 				  </tr>';
 		}
 		echo '</table>';
@@ -105,8 +108,8 @@ if($_SESSION["Eposta"]!="web000@ehu.es"){
 		
 	<div align="center">
 		<form id="editatu" onsubmit="return false;">
-			Editatu nahi duzun galderaren id-a: <input type='text' title='Id' name='Id' id='Id' value='' /> <br><br>
-			<input type="button" name="galderaEditatu" value="Galdera Editatu" onclick='galderakEditatu()'/><br><br>
+			Editatu nahi duzun galderaren id-a: <input type="text" title="Id" name="Id" id="Id" value="" /> <br><br>
+			<input type="button" name="galderaEditatu" value="Galdera Editatu" onclick="galderakEditatu()"/><br><br>
 		</form>
 		<input type="button" id="saioaitxi" name="saioaitxi" value="Saioa Itxi" onclick="location.href = 'logOut.php';"></input><br><br>
 	</div>
