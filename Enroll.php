@@ -15,10 +15,10 @@ if (filter_var($_POST['Izena'],FILTER_VALIDATE_REGEXP,array("options"=>array("re
 				if (filter_var($_POST['Pasahitza'],FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[a-zA-Z,0-9]{6,}/")))){
 					if (filter_var($_POST['Telefonoa'],FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[0-9]{9}/")))){
 						if ($_POST['Espezialitatea']!='Besterik'){
-							$sql="INSERT INTO erabiltzaile (Izena, Abizena1, Abizena2, Eposta, Pasahitza, Telefonoa, Espezialitatea, Interesa) VALUES ('$_POST[Izena]' , '$_POST[Abizena1]' , '$_POST[Abizena2]' , '$_POST[Eposta]' , '$_POST[Pasahitza]' , '$_POST[Telefonoa]' , '$_POST[Espezialitatea]' , '$_POST[Interesa]')";
+							$sql="INSERT INTO erabiltzaile (Izena, Abizena1, Abizena2, Eposta, Pasahitza, Telefonoa, Espezialitatea, Interesa, Galdera, Erantzuna) VALUES ('$_POST[Izena]' , '$_POST[Abizena1]' , '$_POST[Abizena2]' , '$_POST[Eposta]' , '$_POST[Pasahitza]' , '$_POST[Telefonoa]' , '$_POST[Espezialitatea]' , '$_POST[Interesa]' , '$_POST[Galdera]' , '$_POST][Erantzuna]')";
 						}
 						else{
-							$sql="INSERT INTO erabiltzaile (Izena, Abizena1, Abizena2, Eposta, Pasahitza, Telefonoa, Espezialitatea, Interesa) VALUES ('$_POST[Izena]' , '$_POST[Abizena1]' , '$_POST[Abizena2]' , '$_POST[Eposta]' , '$_POST[Pasahitza]' , '$_POST[Telefonoa]' , '$_POST[BesteEspezialitatea]' , '$_POST[Interesa]')";	
+							$sql="INSERT INTO erabiltzaile (Izena, Abizena1, Abizena2, Eposta, Pasahitza, Telefonoa, Espezialitatea, Interesa, Galdera, Erantzuna) VALUES ('$_POST[Izena]' , '$_POST[Abizena1]' , '$_POST[Abizena2]' , '$_POST[Eposta]' , '$_POST[Pasahitza]' , '$_POST[Telefonoa]' , '$_POST[BesteEspezialitatea]' , '$_POST[Interesa]' , '$_POST[Galdera]' , '$_POST][Erantzuna]')";	
 						}
 						if (!$link -> query($sql)){
 								echo "<p><a href = 'signUpBerria.html'>Zuzendu datuak</a></p>";

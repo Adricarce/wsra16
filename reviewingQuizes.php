@@ -1,10 +1,7 @@
 <?php
 session_start();
-if(!isset($_SESSION["Eposta"])){
-		header("Location: errorea.php");
-}
 if($_SESSION["Eposta"]!="web000@ehu.es"){
-	header("Location: erroreaikaslea.php");
+	header("Location: erroreairakaslea.php");
 }
 ?>
 <!DOCTYPE html>
@@ -39,14 +36,9 @@ if($_SESSION["Eposta"]!="web000@ehu.es"){
 			}
 			
 				var param= "GalderaZbkia="+galderazbkia;
-				//alert (param);
 				XMLHttpRequestObject.open("POST","GalderaEditatu.php", true);
-				//alert("kaixo");
 				XMLHttpRequestObject.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-				//alert("kaixo1");
-				XMLHttpRequestObject.send(param);
-				//alert("kaixo2");
-			
+				XMLHttpRequestObject.send(param);	
 		}
 		
 		$(document).on("click", '#gorde', function(event) { 
@@ -61,13 +53,23 @@ if($_SESSION["Eposta"]!="web000@ehu.es"){
 	
 	</script>
   </head>
-  <body>
+   <body>
+  <div id='page-wrap'>
 	<header class='main' id='h1'>
-		<span class="right"><a href='layout.html'>Hasiera orria</a> </span>
-		<h2>Galderak ikusi/editatu</h2>
-    </header><br>
-
-		<?php
+      <span class="right"><a href='signUpBerria.html'>Sign Up</a> </span><br>
+	  <span class="right"><a href='signIn.html'>Sign In</a> </span>
+	<h2>Galderak ikusi/editatu</h2>
+	<p align="right"><?php echo "$_SESSION[Eposta]";?></p>
+    </header>
+	<nav class='main' id='n1' role='navigation'>
+		<span><a href='layout.html'>Home</a></span>
+		<span><a href='anonimoa.php'>Quizzes</a></span>
+		<span><a href='credits.html'>Credits</a></span>
+		<span><a href='ShowQuestions.php'>Galderak</a></span>
+		<span><a href='logOut.php'>Saioa itxi</a></span>
+	</nav>
+    <section class="main" id="s1">
+<?php
 		$link = mysqli_connect ("mysql.hostinger.es","u885903313_adri","Fwrzd7QxoO","u885903313_quizz");
 		//$link = mysqli_connect ("localhost","root","","quizz");
 
@@ -105,14 +107,20 @@ if($_SESSION["Eposta"]!="web000@ehu.es"){
 		
 		mysqli_close($link);
 		?>
-		
-	<div align="center">
+		<div align="center">
 		<form id="editatu" onsubmit="return false;">
 			Editatu nahi duzun galderaren id-a: <input type="text" title="Id" name="Id" id="Id" value="" /> <br><br>
 			<input type="button" name="galderaEditatu" value="Galdera Editatu" onclick="galderakEditatu()"/><br><br>
 		</form>
-		<input type="button" id="saioaitxi" name="saioaitxi" value="Saioa Itxi" onclick="location.href = 'logOut.php';"></input><br><br>
 	</div>
 	<div id="txtHint" style="text-align:center;"></div>
-   </body>
-   </html>
+	<a href='irakaslea.html'>Atzera</a>
+
+	</section>
+	<footer class='main' id='f1'>
+		<p><a href="http://en.wikipedia.org/wiki/Quiz" target="_blank">What is a Quiz?</a></p>
+		<a href='https://github.com'>Link GITHUB</a>
+	</footer>
+	<br>
+</body>
+</html>

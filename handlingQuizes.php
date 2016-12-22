@@ -2,10 +2,7 @@
 <?php
 session_start();
 if(!isset($_SESSION["Eposta"])){
-		header("Location: errorea.php");
-}
-if($_SESSION["Eposta"]=="web000@ehu.es"){
-	header("Location: erroreairakaslea.php");
+		header("Location: erroreaikaslea.php");
 }
 ?>
 <html>
@@ -21,6 +18,7 @@ if($_SESSION["Eposta"]=="web000@ehu.es"){
 		   type='text/css' 
 		   media='only screen and (max-width: 480px)'
 		   href='stylesPWS/smartphone.css' />
+	<script type="text/javascript" language="javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script type="text/javascript">
 	function galderaTxertatu(){
 		document.getElementById("galdera").style.display="inline";
@@ -101,10 +99,23 @@ if($_SESSION["Eposta"]=="web000@ehu.es"){
 
 	</script> 
   </head>
-  <body>
+  <body> 
+<div id='page-wrap'>
 	<header class='main' id='h1'>
-		<h2>Galderak gehitu</h2>
-    </header><br>
+      <span class="right"><a href='signUpBerria.html'>Sign Up</a> </span><br>
+	  <span class="right"><a href='signIn.html'>Sign In</a> </span>
+      <span class="right" style="display:none;"><a href="/logout">LogOut</a> </span>
+	<h2>Galderak</h2>
+	<p align="right"><?php echo "$_SESSION[Eposta]";?></p>
+    </header>
+	<nav class='main' id='n1' role='navigation'>
+		<span><a href='layout.html'>Home</a></span>
+		<span><a href='anonimoa.php'>Quizzes</a></span>
+		<span><a href='credits.html'>Credits</a></span>
+		<span><a href='ShowQuestions.php'>Galderak</a></span>
+		<span><a href='logOut.php'>Saioa itxi</a></span>
+	</nav>
+    <section class="main" id="s1">
 	<div style="text-align:center;">
 		<form id="galdera" name="galdera" method="post" action="" style="display:none;">
 			Galdera (*)<br><textarea rows="3" cols="40" name="Galdera" id="Galdera"></textarea><br><br><br>
@@ -121,11 +132,18 @@ if($_SESSION["Eposta"]=="web000@ehu.es"){
 			<input type="button" name="Bidali" value="Bidali" onClick="return galderaBerria()"></input><br>
 		</form>
 			<input type="button" id="txertatu" name="txertatu" value="Galdera txertatu" onClick="galderaTxertatu()"></input><br><br>
-			<input type="button" name="ikusi" value="Sortutako galderak bistaratu" onClick="galderakBistaratu()"></input><br><br>
-			<input type="button" id="saioaitxi" name="saioaitxi" value="Saioa Itxi" onclick="location.href = 'logOut.php';"></input><br><br>
+			<input type="button" id="ikusi" name="ikusi" value="Sortutako galderak bistaratu" onClick="galderakBistaratu()"></input><br><br>
 	</div>
 	<div id="txtHint" style="text-align:center;"></div>
 	<div id="txtHint2" style="text-align:center;"></div>
 	<div id="txtHint3" style="text-align:center;"></div>
-   </body>
+	
+  </section>
+	<footer class='main' id='f1'>
+		<p><a href="http://en.wikipedia.org/wiki/Quiz" target="_blank">What is a Quiz?</a></p>
+		<a href='https://github.com'>Link GITHUB</a>
+	</footer>
+	<br>
+</body> 
+
   </html>

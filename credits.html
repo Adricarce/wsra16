@@ -1,17 +1,34 @@
 <!DOCTYPE html>
 <html>
   <head>
+   <head>
     <meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
 	<title>Credits</title>
-    <link rel='stylesheet' type='text/css' href='stylesPWS/credits.css?v=1.2' />
+    <link rel='stylesheet' type='text/css' href='stylesPWS/style.css' />
+	<link rel='stylesheet' 
+		   type='text/css' 
+		   media='only screen and (min-width: 530px) and (min-device-width: 481px)'
+		   href='stylesPWS/wide.css' />
+	<link rel='stylesheet' 
+		   type='text/css' 
+		   media='only screen and (max-width: 480px)'
+		   href='stylesPWS/smartphone.css' />
   </head>
-  <body>
+    <body>
+  <div id='page-wrap'>
 	<header class='main' id='h1'>
-		<span class="right"><a href='layout.html'>Atzera</a> </span>
-		<h2>Egilea</h2>
+      <span class="right"><a href='signUpBerria.html'>Sign Up</a> </span><br>
+	  <span class="right"><a href='signIn.html'>Sign In</a> </span>
+	<h2>Egilea</h2>
     </header>
-	<br>
-	<h3>Adri Carcedo</h3><br>
+	<nav class='main' id='n1' role='navigation'>
+		<span><a href='layout.html'>Home</a></span>
+		<span><a href='anonimoa.php'>Quizzes</a></span>
+		<span><a href='credits.html'>Credits</a></span>
+		<span><a href='ShowQuestions.php'>Galderak</a></span>
+	</nav>
+    <section class="main" id="s1">
+  <h3>Adri Carcedo</h3><br>
 	<h4>Konputagailuen ingeniaritza</h4><br>
 	<div style="text-align:center;">			
 		<img src="https://s-media-cache-ak0.pinimg.com/236x/bf/f5/65/bff565208a36b49f795ca40bbe14a2aa.jpg" alt="Koala" /><br><br>
@@ -80,8 +97,12 @@
 			 }
 		}
 	</script></div>
-
-	
-
+    </section>
+	<footer class='main' id='f1'>
+		<p><a href="http://en.wikipedia.org/wiki/Quiz" target="_blank">What is a Quiz?</a></p>
+		<a href='https://github.com'>Link GITHUB</a>
+	</footer>
+</div>
 </body>
 </html>
+

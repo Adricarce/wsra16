@@ -21,22 +21,9 @@
 					alert('Eposta ezin da hutsik utzi.');
 					return false;
 				}
-				if(pass==''){
-					alert('Pasahitza ezin da hutsik utzi.');
-					return false;
-				}
+	
 				return true;
 			}
-		function passLuzera(){
-				var pass=document.getElementById("Pasahitza").value;
-				var pasahitza = new RegExp(/^[a-zA-Z,0-9]{6,}$/);
-			if (pasahitza.test(pass)){
-				return true;
-			}else{
-				alert('Pasahitzak gutxienez 6ko luzera izan behar du.');
-				return false;
-			}	
-		}
 
 		function helbideFormatua(){
 			var email=document.getElementById("Eposta").value;
@@ -50,7 +37,7 @@
 		}
 		
 		function balidatu(){
-			if( hutsaEz() && helbideFormatua() && passLuzera()){	
+			if( hutsaEz() && helbideFormatua()){	
 				return true;		
 			}else{
 				return false;
@@ -59,17 +46,35 @@
 	</script>
   </head>
   <body>
-  <header class='main' id='h1'>
-      <span class="right"><a href='layout.html'>Hasiera orria</a> </span>
+  <div id='page-wrap'>
+	<header class='main' id='h1'>
+      <span class="right"><a href='signUpBerria.html'>Sign Up</a> </span><br>
+	  <span class="right"><a href='signIn.html'>Sign In</a> </span>
+      <span class="right" style="display:none;"><a href="/logout">LogOut</a> </span>
 	<h2>Logeatu</h2>
     </header>
-	<br>
+	<nav class='main' id='n1' role='navigation'>
+		<span><a href='layout.html'>Home</a></span>
+		<span><a href='anonimoa.php'>Quizzes</a></span>
+		<span><a href='credits.html'>Credits</a></span>
+		<span><a href='ShowQuestions.php'>Galderak</a></span>
+	</nav>
+    <section class="main" id="s1">
+  
 	<form id="log" name="log" method="post" action="SignIn.php" onSubmit="return balidatu()">
 		<div style="text-align:center;">
 			Eposta elektronikoa (*) <input type="text" id="Eposta" name="Eposta" title="Eposta"><br>
 			Pasahitza (*)<input type="password" id="Pasahitza" name="Pasahitza" title="Pasahitza"><br>
-			<input name="submit" type="submit" value="Bidali">
+			<input name="submit" type="submit" value="Bidali"><br>
+			 <button name='ahaztu' id='ahaztu'	type='submit' >Pasahitza ahaztu duzu?</button>
+			
 		</div>
 	</form>
+	</section>
+	<footer class='main' id='f1'>
+		<p><a href="http://en.wikipedia.org/wiki/Quiz" target="_blank">What is a Quiz?</a></p>
+		<a href='https://github.com'>Link GITHUB</a>
+	</footer>
+	<br>
 </body>
 </html>

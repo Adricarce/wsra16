@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
-	<title>SignUp</title>
+	<title>Erregistratu</title>
     <link rel='stylesheet' type='text/css' href='stylesPWS/style.css' />
 	<link rel='stylesheet' 
 		   type='text/css' 
@@ -12,7 +12,7 @@
 		   type='text/css' 
 		   media='only screen and (max-width: 480px)'
 		   href='stylesPWS/smartphone.css' />
-		   
+  	<script type="text/javascript" language="javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script type="text/javascript">
 			
 		XMLHttpRequestObject = new XMLHttpRequest();
@@ -80,6 +80,7 @@
 			var email=document.getElementById("Eposta").value;
 			var pass=document.getElementById("Pasahitza").value;
 			var telefonoa=document.getElementById("Telefonoa").value;
+			var erantzuna=document.getElementById("Erantzuna").value;
 			if(name==''){
 				alert('Izena eremua ezin da hutsik utzi.');
 				return false;
@@ -102,6 +103,10 @@
 			}
 			if(telefonoa==''){
 				alert('Telefonoa ezin da hutsik utzi.');
+				return false;
+			}
+			if (erantzuna==''){
+				alert('Erantzuna ezin da hutsik utzi.');
 				return false;
 			}
 			return true;
@@ -213,7 +218,9 @@
 			}
 		}
 		
-		function irudiaErakutsi(irudia) {
+
+		
+	function irudiaErakutsi(irudia) {
 			var files = irudia.files;
 			for (var i = 0; i < files.length; i++) {           
 				var file = files[i];
@@ -235,21 +242,38 @@
 		}
 			
 	</script>
-  </head>
+	</head>
   <body>
-  	<header class='main' id='h1'>
-      <span class="right"><a href='layout.html'>Atzera</a> </span>
+  <div id='page-wrap'>
+	<header class='main' id='h1'>
+      <span class="right"><a href='signUpBerria.html'>Sign Up</a> </span><br>
+	  <span class="right"><a href='signIn.html'>Sign In</a> </span>
+      <span class="right" style="display:none;"><a href="/logout">LogOut</a> </span>
 	<h2>Erregistratu</h2>
     </header>
-	<br>
-	<div style="text-align:center;">
-		<form id="erregistro" name="erregistro" method="post" action="Enroll.php" onSubmit="return balidatu()">
+	<nav class='main' id='n1' role='navigation'>
+		<span><a href='layout.html'>Home</a></span>
+		<span><a href='anonimoa.php'>Quizzes</a></span>
+		<span><a href='credits.html'>Credits</a></span>
+		<span><a href='ShowQuestions.php'>Galderak</a></span>
+	</nav>
+    <section class="main" id="s1">
+  
+	<!--<div style="text-align:center;">-->
+	<form id="erregistro" name="erregistro" method="post" action="EnrollWithImage.php" onSubmit="return balidatu()">
 			Izena (*) <input type="text" id="Izena" name="Izena" title="Izena"><br>	
 			1. abizena (*) <input type="text" id="Abizena1" name="Abizena1" title="Abizena1"><br>	
 			2. abizena (*) <input type="text" id="Abizena2" name="Abizena2" title="Abizena2"><br>				
-			Eposta elektronikoa (*) <input type="text" id="Eposta"name="Eposta" title="Eposta" onchange="matrikula()"><br>
+			Eposta elektronikoa (*) <input type="text" id="Eposta" name="Eposta" title="Eposta" onchange="matrikula()"><br>
 			Pasahitza (*)<input type="password" id="Pasahitza" name="Pasahitza" title="Pasahitza" onchange="pasahitza()"><br>
 			Pasahitza berridatzi (*)<input type="password" id="Pasahitza2" name="Pasahitza2" title="Pasahitza2" onchange="pasahitza2()"><br>
+			Pasahitza berreskuratzeko galdera(*)
+		    <select id="Galdera" name="Galdera">    
+			   <option value="Aitaren/Amaren jaiotza-eguna?" selected="selected">Aitaren/Amaren jaiotza-eguna?</option>
+			   <option value="Musika talde gustokoena?">Musika talde gustokoena?</option>
+			   <option value="Non bizi zara?">Non bizi zara?</option>
+		    </select>
+		    <input type="text" id="Erantzuna" name="Erantzuna" title="Erantzuna"><br>
 			Telefono zenbakia (*) <input type="text" id="Telefonoa" name="Telefonoa" title="Telefonoa"><br>
 			Espezialitatea (*)
 			<select id="Espezialitatea" name="Espezialitatea" onchange="besteEsp()">
@@ -258,27 +282,23 @@
 				<option value="Software ingeniaritza">Software ingeniaritza</option>
 				<option value="Besterik"> Besterik </option>
 			</select><br><br>
-			<textarea rows="1" cols="40" id="BesteEspezialitatea" name="BesteEspezialitatea" placeholder="Idatzi zure espezialitatea" style="display: none;" ></textarea>			
-			<br>
+			<textarea rows="1" cols="40" id="BesteEspezialitatea" name="BesteEspezialitatea" placeholder="Idatzi zure espezialitatea" style="display: none;" ></textarea>
 			Interesa duzun teknologiak eta erremintak: <br>
-			<textarea rows="3" cols="40" name="Interesa"></textarea>
-			<br>
+			<textarea rows="3" cols="40" name="Interesa"></textarea><br>
 			Argazkia igo
-				<input type="file" id="image" name="image" accept="image/*" onchange="irudiaErakutsi(this)">
-				<br>
-				<img id="img" src="" alt="image" style="width:25%; margin-top:10px; display:none;"/>  				
-			<br><br>
-			<input type="submit" value="Bidali">
+			<input type="file" id="image" name="image" accept="image/*" onchange="irudiaErakutsi(this)"/><br>
+			<img id="img" src="" alt="image" style="width:25%; margin-top:10px; display:none;"/><br><input type="submit" value="Bidali">
 		</form>
-	</div>
-	<div id="txtHint"align="center">
-		<p>Eposta zuzena da?</p>
-	</div>
-	<div id="txtHint2"align="center">
-		<p>Pasahitza zuzena da?</p>
-	</div>
-	<div id="txtHint3"align="center">
-		<p>Bigarren pasahitza zuzena da?</p>
-	</div>
+	<!--</div>-->
+	<div id="txtHint" align="center"><p>Eposta zuzena da?</p></div>
+	<div id="txtHint2" align="center"><p>Pasahitza zuzena da?</p></div>
+	<div id="txtHint3" align="center"><p>Bigarren pasahitza zuzena da?</p></div>
+		    </section>
+	<footer class='main' id='f1'>
+		<p><a href="http://en.wikipedia.org/wiki/Quiz" target="_blank">What is a Quiz?</a></p>
+		<a href='https://github.com'>Link GITHUB</a>
+	</footer>
+	<br>
 </body>
-</html>
+</html> 
+
